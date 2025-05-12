@@ -1,1 +1,1 @@
-Exercieses from Launch School Ruby Track
+Exercises from Launch School Ruby Track
