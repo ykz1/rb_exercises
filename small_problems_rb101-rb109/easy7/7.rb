@@ -1,5 +1,5 @@
-def show_multiplicative_average(arr)
-  format('%.3f', (arr.inject(:*).to_f / arr.size))
+def show_multiplicative_average(array)
+  format('The result is %.3f', (array.inject(:*).to_f / array.size))
 end
 
 p show_multiplicative_average([3, 5])                # => The result is 7.500
