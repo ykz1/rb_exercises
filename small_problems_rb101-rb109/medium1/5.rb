@@ -7,8 +7,12 @@
 
 def diamond(n)
   middle = (n / 2.0).ceil
-  (1..middle).each { |row| puts ('*' * (row * 2 - 1)).center(n) }
-  ((middle + 1)..n).each { |row| puts ('*' * ((n - row + 1) * 2 - 1)).center(n) }
+  (1..middle).each { |row| puts row_str(n, row * 2 - 1) }
+  ((middle + 1)..n).each { |row| puts row_str(n, (n - row + 1) * 2 - 1) }
+end
+
+def row_str(row_length, stars_count)
+  ('*' * stars_count).center(row_length)
 end
 
 diamond(1)
@@ -19,8 +23,8 @@ diamond(9)
 
 def diamond2(n)
   middle = (n / 2.0).ceil
-  (1..middle).each { |row| puts add_spaces(('*' * (row * 2 - 1)).center(n)) }
-  ((middle + 1)..n).each { |row| puts add_spaces(('*' * ((n - row + 1) * 2 - 1)).center(n)) }
+  (1..middle).each { |row| puts add_spaces(row_str(n, row * 2 - 1)) }
+  ((middle + 1)..n).each { |row| puts add_spaces(row_str(n, (n - row + 1) * 2 - 1)) }
 end
 
 def add_spaces(str)
@@ -32,6 +36,18 @@ diamond2(1)
 diamond2(3)
 diamond2(9)
 diamond2(11)
+
+def diamond3(n)
+  max_distance = (n - 1) / 2
+  (-max_distance..max_distance).each do |distance|
+    puts row_str(n, n - 2 * distance.abs)
+  end
+end
+
+diamond3(1)
+diamond3(3)
+diamond3(9)
+diamond3(11)
 
 =begin
 # Another way we can describe our diamond is to start center-out, and with each iteration add stars to our existing diamond's perimeter. We can use a hash

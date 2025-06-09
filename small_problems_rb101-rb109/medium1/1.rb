@@ -30,3 +30,9 @@ def rotate_string(str)
 end
 
 p rotate_string('12345') == '23451'
+
+def rotate_integers(int)
+  rotate_array2(int.digits.reverse).join.to_i
+end
+
+p rotate_integers(12345) == 23451
