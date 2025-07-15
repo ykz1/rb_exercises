@@ -147,7 +147,52 @@ p balanced3?('}what""') == false
 p balanced3?(%Q("He said 'Hello' to me")) == true
 
 p balanced3?('[(])') == false
+=begin
+
+Requirements:
+- Quotes:
+  - If not already open, then ' and " both opens single and double quote 
+  - When open, no stack tracing for any brackets because we're now in a quote
+  - When closing quotes, closes until the previous stack, so a " ' " would both remove the inner single quote that's open as well as the higher level double quote
+- Brackets:
+  - Stack tracing only when not in a quote
+  - ( [ and { open brackets
+  - ) ] and } close brackets
+  - If a bracket is open, must be closed before closing other brackets
+
+- Solution
+- recognized characters to be processed as <type> <action>
+  - (: regular open
+  - ): regular close
+  - [: square open
+  - ]: square close
+  - {: squiggly open
+  - }: squiggly close
+  - ': single flip
+  - ": double flip
+- Actions:
+  - open: if not in a quote, then add type to stack
+  - close: if not in a quote, then remove type from stack but return false if type mismatch between type that we are action and the last type in stack
+  - flip: if type being flipped exists in stack, remove stack top-down until same type is removed
+  
+=end
 
 def balanced4?(str)
+actions = {
+  '(': 'regular open',
+  ')': 'regular close',
+  '[': 'square open',
+  ']': 'square close',
+  '{': 'squiggly open',
+  '}': 'squiggly close',
+  "'": 'single flip',
+  '"': 'double flip'
+}
+
+stack = ''
+
+str.chars.each do |char|
+  if actions.key?(char)
+    instruction = actions[char]
 
 end
