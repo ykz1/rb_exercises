@@ -11,6 +11,7 @@ p count([1,2,3,4,5]) { |value| false } == 0
 p count([]) { |value| value.even? } == 0
 p count(%w(Four score and seven)) { |value| value.size == 5 } == 2
 
+# Further exploration below:
 
 def count2(collection)
   collection.map{ |element| yield(element) ? 1 : 0 }.sum
